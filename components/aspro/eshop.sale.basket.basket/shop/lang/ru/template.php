@@ -1,6 +1,7 @@
 <?
 $MESS ['SALE_REFRESH'] = "       Обновить       ";
 $MESS ['SALE_ORDER'] = "Оформить заказ";
+$MESS ['SALE_FAST_ORDER'] = "Быстрый заказ";
 $MESS ['SALE_NAME'] = "Название";
 $MESS ['SALE_PROPS'] = "Свойства";
 $MESS ['SALE_PRICE'] = "Цена";
@@ -36,4 +37,5 @@ $MESS ['SALE_PRD_IN_BASKET_SUBSCRIBE'] = "ожидаемые";
 $MESS ['SALE_PRD_IN_BASKET_NOTA'] = "отсутствуют";
 $MESS ['SALE_NO_ACTIVE_PRD'] = "В вашей корзине ещё нет товаров.";
 $MESS ['SALE_NO_ACTIVE_PRD_START'] = "Начать покупки";
+$MESS ['REMOVE_ALL_ITEMS'] = "Очистить";
 ?>

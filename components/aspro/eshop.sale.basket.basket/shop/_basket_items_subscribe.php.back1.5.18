@@ -1,19 +1,19 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
-<div class="cart-items" id="id-shelve-list" <?if ($_REQUEST["section"]!="delay"):?>style="display:none;"<?endif;?>>
+<div class="cart-items" id="id-subscribe-list" style="display:none;">
 	<ul class="tabs">
 		<li><span onclick="ShowBasketItems(1);"><i><?=GetMessage("SALE_PRD_IN_BASKET_ACT")?> (<?=count($arResult["ITEMS"]["AnDelCanBuy"])?>)</i></span></li>
 		<?if( $countItemsDelay=count($arResult["ITEMS"]["DelDelCanBuy"]) ){?>
-			<li class="current"><span><i><?=GetMessage("SALE_PRD_IN_BASKET_SHELVE")?></i></span></li>
+			<li><span onclick="ShowBasketItems(2);"><i><?=GetMessage("SALE_PRD_IN_BASKET_SHELVE")?> (<?=$countItemsDelay?>)</i></span></li>
 		<?}?>
 		<?if( $countItemsSubscribe=count($arResult["ITEMS"]["ProdSubscribe"]) ){?>
-			<li><span onclick="ShowBasketItems(3);"><i><?=GetMessage("SALE_PRD_IN_BASKET_SUBSCRIBE")?> (<?=$countItemsSubscribe?>)</i></span></li>
+			<li class="current"><span><i><?=GetMessage("SALE_PRD_IN_BASKET_SUBSCRIBE")?></i></span></li>
 		<?}?>
 		<?if( $countItemsNotAvailable=count($arResult["ITEMS"]["nAnCanBuy"]) ){?>
 			<li><span onclick="ShowBasketItems(4);"><i><?=GetMessage("SALE_PRD_IN_BASKET_NOTA")?> (<?=$countItemsNotAvailable?>)</i></span></li>
 		<?}?>
 	</ul>
-	<?if( count($arResult["ITEMS"]["DelDelCanBuy"]) > 0 ){?>
+	<?if( count($arResult["ITEMS"]["ProdSubscribe"]) > 0 ){?>
 		<table class="table-standart subscribe" style="margin-top: 20px;" rules="rows">
 			<thead>
 				<tr>
@@ -39,15 +39,10 @@
 					<?if( in_array("PRICE", $arParams["COLUMNS_LIST"]) ){?>
 						<td class="cart-item-price"><?= GetMessage("SALE_PRICE")?></td>
 					<?}?>
-					<td>
-						<?/*if (in_array("DELETE", $arParams["COLUMNS_LIST"]) || in_array("DELAY", $arParams["COLUMNS_LIST"])):?>
-							<?= GetMessage("SALE_ACTION")?>
-						<?endif;*/?>
-					</td>
 				</tr>
 			</thead>
 			<tbody>
-			<?foreach($arResult["ITEMS"]["DelDelCanBuy"] as $arBasketItems){?>
+			<?foreach($arResult["ITEMS"]["ProdSubscribe"] as $arBasketItems){?>
 				<tr>
 					<td class="basket-img">
 						<?if( in_array("DELETE", $arParams["COLUMNS_LIST"]) ){?>
@@ -67,11 +62,11 @@
 					</td>
 					<?if( in_array("NAME", $arParams["COLUMNS_LIST"]) ){?>
 						<td class="cart-item-name">
-							<?if (strlen($arBasketItems["DETAIL_PAGE_URL"]) > 0 ){?>
+							<?if( strlen($arBasketItems["DETAIL_PAGE_URL"]) > 0 ){?>
 								<a href="<?=$arBasketItems["DETAIL_PAGE_URL"] ?>">
 							<?}?>
-								<?=$arBasketItems["NAME"] ?>
-							<?if (strlen($arBasketItems["DETAIL_PAGE_URL"]) > 0 ){?>
+							<?=$arBasketItems["NAME"] ?>
+							<?if( strlen($arBasketItems["DETAIL_PAGE_URL"]) > 0 ){?>
 								</a>
 							<?}?>
 							<?if( in_array("PROPS", $arParams["COLUMNS_LIST"]) ){
@@ -107,16 +102,9 @@
 							<?}?>
 						</td>
 					<?}?>
-					<?if( in_array("DELAY", $arParams["COLUMNS_LIST"]) ){?>
-						<td class="cart-item-actions">
-							<a class="setaside" href="<?=str_replace("#ID#", $arBasketItems["ID"], $arUrlTempl["add"])?>"><?=GetMessage("SALE_ADD_CART")?></a>
-						</td>
-					<?}?>
-					
 				</tr>
 			<?}?>
 			</tbody>
 		</table>
-		<span class="link_block remove_all_basket" data-type="delay" data-href="/basket/"><?=GetMessage("REMOVE_ALL_ITEMS");?></span>
 	<?}?>
 </div>

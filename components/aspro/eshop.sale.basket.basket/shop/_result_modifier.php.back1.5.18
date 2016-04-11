@@ -1,54 +1,7 @@
 <?
-use Bitrix\Main\Loader;
-static $catalogIncluded = null;
-
 	$arElementsID = array();
 	$arProductsToElements = array();
 	$arMeasures = array();
-
-	function getAvailableQuantity($arBasketItems)
-	{
-		if (empty($arBasketItems) || !is_array($arBasketItems))
-			return array();
-		if ($catalogIncluded === null)
-			$catalogIncluded = Loader::includeModule('catalog');
-		if (!$catalogIncluded)
-			return false;
-
-		$arElementId = array();
-		$productMap = array();
-		foreach ($arBasketItems as $key => $arItem)
-		{
-			$arElementId[$arItem['PRODUCT_ID']] = $arItem['PRODUCT_ID'];
-			if (!isset($productMap[$arItem['PRODUCT_ID']]))
-				$productMap[$arItem['PRODUCT_ID']] = array();
-			$productMap[$arItem['PRODUCT_ID']][] = $key;
-		}
-		unset($key, $arItem);
-
-		if (!empty($arElementId))
-		{
-			$productIterator = CCatalogProduct::GetList(
-				array(),
-				array('ID' => $arElementId),
-				false,
-				false,
-				array('ID', 'QUANTITY')
-			);
-			while ($product = $productIterator->Fetch())
-			{
-				if (!isset($productMap[$product['ID']]))
-					continue;
-				foreach ($productMap[$product['ID']] as $key)
-					$arBasketItems[$key]['AVAILABLE_QUANTITY'] = $product['QUANTITY'];
-				unset($key);
-			}
-			unset($product, $productIterator);
-		}
-		unset($productMap, $arElementId);
-
-		return $arBasketItems;
-	}
 	
 	if ($arParams["SHOW_MEASURE"]=="Y")
 	{
@@ -103,14 +56,7 @@ static $catalogIncluded = null;
 			$arProductsToElements[$productId["ID"]][] = $val["PRODUCT_ID"];
 		}
 	}
-	if(function_exists(getMeasures)){
-		$arResult["ITEMS"]["AnDelCanBuy"]=getMeasures($arResult["ITEMS"]["AnDelCanBuy"]);
-	}
-	if(function_exists(getRatio)){
-		$arResult["ITEMS"]["AnDelCanBuy"]=getRatio($arResult["ITEMS"]["AnDelCanBuy"]);
-	}
-	$arResult["ITEMS"]["AnDelCanBuy"]=getAvailableQuantity($arResult["ITEMS"]["AnDelCanBuy"]);
-
+	
 	foreach($arResult["ITEMS"]["DelDelCanBuy"] as $key => $val)
 	{
 		if ($arResult["ITEMS_IMG"][$val["ID"]])

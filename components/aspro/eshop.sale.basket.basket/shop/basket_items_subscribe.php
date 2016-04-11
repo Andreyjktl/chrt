@@ -2,23 +2,15 @@
 
 <div class="cart-items" id="id-subscribe-list" style="display:none;">
 	<ul class="tabs">
-		<li>
-			<span onclick="ShowBasketItems(1);"><?=GetMessage("SALE_PRD_IN_BASKET_ACT")?> (<?=count($arResult["ITEMS"]["AnDelCanBuy"])?>)</span>
-		</li>
+		<li><span onclick="ShowBasketItems(1);"><i><?=GetMessage("SALE_PRD_IN_BASKET_ACT")?> (<?=count($arResult["ITEMS"]["AnDelCanBuy"])?>)</i></span></li>
 		<?if( $countItemsDelay=count($arResult["ITEMS"]["DelDelCanBuy"]) ){?>
-			<li>
-				<span onclick="ShowBasketItems(2);"><?=GetMessage("SALE_PRD_IN_BASKET_SHELVE")?> (<?=$countItemsDelay?>)</span>
-			</li>
+			<li><span onclick="ShowBasketItems(2);"><i><?=GetMessage("SALE_PRD_IN_BASKET_SHELVE")?> (<?=$countItemsDelay?>)</i></span></li>
 		<?}?>
 		<?if( $countItemsSubscribe=count($arResult["ITEMS"]["ProdSubscribe"]) ){?>
-			<li class="current">
-				<span><?=GetMessage("SALE_PRD_IN_BASKET_SUBSCRIBE")?></span>
-			</li>
+			<li class="current"><span><i><?=GetMessage("SALE_PRD_IN_BASKET_SUBSCRIBE")?></i></span></li>
 		<?}?>
 		<?if( $countItemsNotAvailable=count($arResult["ITEMS"]["nAnCanBuy"]) ){?>
-			<li>
-				<span onclick="ShowBasketItems(4);"><?=GetMessage("SALE_PRD_IN_BASKET_NOTA")?> (<?=$countItemsNotAvailable?>)</span>
-			</li>
+			<li><span onclick="ShowBasketItems(4);"><i><?=GetMessage("SALE_PRD_IN_BASKET_NOTA")?> (<?=$countItemsNotAvailable?>)</i></span></li>
 		<?}?>
 	</ul>
 	<?if( count($arResult["ITEMS"]["ProdSubscribe"]) > 0 ){?>
@@ -62,7 +54,7 @@
 						<?if( strlen($arBasketItems["DETAIL_PICTURE"]["SRC"]) > 0 ){?>
 							<img src="<?=$arBasketItems["DETAIL_PICTURE"]["SRC"]?>" alt="<?=$arBasketItems["NAME"] ?>"/>
 						<?}else{?>
-							<img src="<?=SITE_TEMPLATE_PATH?>/img/noimage170.gif" alt="<?=$arBasketItems["NAME"] ?>"/>
+							<img src="<?=SITE_TEMPLATE_PATH?>/images/noimage40.gif" alt="<?=$arBasketItems["NAME"] ?>"/>
 						<?}?>
 						<?if( strlen($arBasketItems["DETAIL_PAGE_URL"]) > 0 ){?>
 							</a>
@@ -98,11 +90,11 @@
 						<td class="cart-item-weight"><?=$arBasketItems["WEIGHT_FORMATED"]?></td>
 					<?}?>
 					<?if( in_array("QUANTITY", $arParams["COLUMNS_LIST"]) ){?>
-						<td class="cart-item-quantity"><?=$arBasketItems["QUANTITY"]?></td>
+						<td class="cart-item-quantity"><?=$arBasketItems["QUANTITY"]?><?if (($arParams["SHOW_MEASURE"]=="Y")&&($arBasketItems["MEASURE"]["SYMBOL_RUS"])) { echo "&nbsp;".$arBasketItems["MEASURE"]["SYMBOL_RUS"];}?></td>
 					<?}?>
 					<?if( in_array("PRICE", $arParams["COLUMNS_LIST"]) ){?>
 						<td class="cart-item-price">
-							<?if( doubleval($arBasketItems["FULL_PRICE"]) > 0 ){?>
+							<?if( (doubleval($arBasketItems["FULL_PRICE"]) > 0 ) && (doubleval($arBasketItems["FULL_PRICE"])!=$arBasketItems["PRICE"])){?>
 								<div class="discount-price"><?=$arBasketItems["PRICE_FORMATED"]?></div>
 								<div class="old-price"><?=$arBasketItems["FULL_PRICE_FORMATED"]?></div>
 							<?}else{?>
@@ -114,5 +106,6 @@
 			<?}?>
 			</tbody>
 		</table>
+		<span class="link_block remove_all_basket" data-type="subscribed" data-href="/basket/"><?=GetMessage("REMOVE_ALL_ITEMS");?></span>
 	<?}?>
 </div>

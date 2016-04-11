@@ -58,7 +58,6 @@ if (StrLen($arResult["ERROR_MESSAGE"])<=0)
 	}
 	</script>
 	<form method="post" action="<?=POST_FORM_ACTION_URI?>" name="basket_form">
-		<input id="cur_page" type="hidden" name="CUR_PAGE" value='<?=$APPLICATION->GetCurPage()?>' />
 		<?
 		include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/basket_items.php");
 		include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/basket_items_delay.php");
@@ -69,35 +68,3 @@ if (StrLen($arResult["ERROR_MESSAGE"])<=0)
 <?}else{
 	include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/basket_items.php");
 }?>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.link_block.remove_all_basket').click(function(e){
-			if(!$(this).hasClass('disabled')){
-				$(this).addClass('disabled');
-
-				delete_all_items($(this).data("type"), $(".tabs_content li:eq("+$(this).index()+")").attr("item-section"), 350, $(this).data('href'));
-			}
-			$(this).removeClass('disabled');
-		})
-		function delete_all_items(type, item_section, correctSpeed, url){
-			$.post( arIShopOptions['SITE_DIR']+"ajax/action_basket.php", "TYPE="+type+"&CLEAR_ALL=Y", $.proxy(function( data ){		
-				// basketAjaxReload();
-				basketReload();
-			}));
-		}
-
-		function basketReload() {
-			location.reload();
-		}
-
-		function basketAjaxReload() {
-			if(!$('input[name="COUPON"]').val()){
-				$('input[name="COUPON"]').attr('name', 'tmp_COUPON');
-			}
-
-			$.post( $('#cur_page').val(), $("form[name^=basket_form]").serialize(), $.proxy(function( data){	
-				$("#basket-replace").html(data);
-			}));
-		}
-	})
-</script>

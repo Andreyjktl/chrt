@@ -58,8 +58,7 @@
 	<tbody>
 	<?$i=0;
 	
-	foreach($arResult["ITEMS"]["AnDelCanBuy"] as $arBasketItems){
-		?>
+	foreach($arResult["ITEMS"]["AnDelCanBuy"] as $arBasketItems){?>
 		<tr>
 			<?if( in_array("NAME", $arParams["COLUMNS_LIST"]) ){?>
 				<td class="basket-img">
@@ -110,21 +109,11 @@
 			<?if( in_array("WEIGHT", $arParams["COLUMNS_LIST"]) ){?>
 				<td><?=$arBasketItems["WEIGHT_FORMATED"]?></td>
 			<?}?>	
-			<?if( in_array("QUANTITY", $arParams["COLUMNS_LIST"]) ){
-				?>			
-				<?$q=(float)$arBasketItems["QUANTITY"];?>
-				<?
-					$ratio = isset($arBasketItems["MEASURE_RATIO"]) ? $arBasketItems["MEASURE_RATIO"] : 0;
-					$max = isset($arBasketItems["AVAILABLE_QUANTITY"]) ? "data-max=\"".$arBasketItems["AVAILABLE_QUANTITY"]."\"" : "";
-					if (!isset($arBasketItems["MEASURE_RATIO"])){
-						$ratio = 1;
-					}
-					$float_ratio=strpos($ratio, ".");
-				?>
+			<?if( in_array("QUANTITY", $arParams["COLUMNS_LIST"]) ){?>			
 				<td class="cart-item-quantity">
-					<div class="counter_block basket_block">
-						<input class="text" maxlength="18" type="text" name="QUANTITY_<?=$arBasketItems["ID"]?>" <?=$max?> data-float_ratio="<?=$float_ratio;?>" data-step="<?=$ratio?>" value="<?=$q?>" size="3" id="QUANTITY_<?=$arBasketItems["ID"]?>">
-						<span class="plus" <?=$max?>>+</span>
+					<div class="counter_block">
+						<input class="text" maxlength="18" type="text" name="QUANTITY_<?=$arBasketItems["ID"]?>" value="<?=$arBasketItems["QUANTITY"]?>" size="3" id="QUANTITY_<?=$arBasketItems["ID"]?>">
+						<span class="plus">+</span>
 						<span class="minus">-</span>
 					</div>
 					<?if (($arParams["SHOW_MEASURE"]=="Y")&&($arBasketItems["MEASURE"]["SYMBOL_RUS"])) { echo "&nbsp;".$arBasketItems["MEASURE"]["SYMBOL_RUS"];}?>
@@ -155,7 +144,6 @@
 		<?if( $arParams["HIDE_COUPON"] != "Y" ){?>
 			<tr>
 				<td rowspan="5" class="tal">
-					<span class="link_block remove_all_basket" data-type="basket" data-href="/basket/"><?=GetMessage("REMOVE_ALL_ITEMS");?></span>
 					<input class="input_text_style"
 					<?if( empty($arResult["COUPON"]) ){?>
 						onclick="if (this.value=='<?=GetMessage("SALE_COUPON_VAL")?>')this.value=''; this.style.color='black'"
@@ -207,9 +195,7 @@
 		</td>
 	</tr>
 </table>
-<?/*
 <div class="shadow-item_info" style="margin-bottom: 50px;"><img border="0" style="margin-bottom: 50px;" src="<?=SITE_TEMPLATE_PATH?>/images/shadow-item_info_revert.png"></div>
-*/?>
 <?}else{?>
 	<tbody>
 		<tr>
@@ -222,4 +208,4 @@
 </table>
 <?}?>
 </div>
-<br/><br/>
+<?

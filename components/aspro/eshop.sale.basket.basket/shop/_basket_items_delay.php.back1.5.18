@@ -117,6 +117,5 @@
 			<?}?>
 			</tbody>
 		</table>
-		<span class="link_block remove_all_basket" data-type="delay" data-href="/basket/"><?=GetMessage("REMOVE_ALL_ITEMS");?></span>
 	<?}?>
 </div>
