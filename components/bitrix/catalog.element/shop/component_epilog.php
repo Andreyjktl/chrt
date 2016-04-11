@@ -1,9 +1,9 @@
-<?	
+<?
 	if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 	__IncludeLang($_SERVER["DOCUMENT_ROOT"].$templateFolder."/lang/".LANGUAGE_ID."/template.php");
 	global $first_tab;
 ?>
-	
+
 
 	<?if ($arParams["USE_REVIEW"]=="Y"):?>
 		<div class="box" style="display: block;">
@@ -31,7 +31,7 @@
 				),	false
 			);?>
 		</div>
-	<?endif;?>	
+	<?endif;?>
 
 	<?if (($arParams["SHOW_ASK_BLOCK"]=="Y")&&(intVal($arParams["ASK_FORM_ID"]))):?>
 			<div class="box" <? echo $first_tab==5?'style="display: block ;"':''; ?>>
@@ -73,14 +73,14 @@
 			</div>
 	<?endif;?>
 
-	
+
 	<table width="100%" class="share"><tr>
 <td>
 	<?$APPLICATION->IncludeFile(SITE_DIR."include/social_button.php", Array(), Array(
 			"MODE"      => "html",
 			"NAME"      => GetMessage('CT_BCE_CATALOG_SOC_BUTTON'),
 		)
-	);?>	
+	);?>
 </td>
 <td>
 	<?$APPLICATION->IncludeFile(SITE_DIR."include/item_description.php", Array(), Array(
@@ -91,7 +91,8 @@
 </td></tr></table>
 </div>
 
-
+</div>
+</div>
 
 <div id="compare_content">
 	<?$APPLICATION->IncludeComponent("bitrix:catalog.compare.list", "preview", array(
@@ -112,14 +113,13 @@
 
 </div>
 
-</div>
-</div>
+
 
 
 
 <script>
 	$(document).ready(function()
-	{		
+	{
 		if (!$("#product_reviews_title").parents("li").is(".current"))
 		{
 			$(".inner_left div.box").first().show();
@@ -128,7 +128,7 @@
 		{
 			$("#compare").html($("#compare_content").html());
 			$("#compare_content").empty();
-		}	
+		}
 	});
 </script>
 <script type="text/javascript">

@@ -1,8 +1,17 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<?
+	if (($arParams["SHOW_MEASURE"]=="Y")&&($arResult["CATALOG_MEASURE"]))
+	{ $arMeasure = CCatalogMeasure::getList(array(), array("ID"=>$arResult["CATALOG_MEASURE"]), false, false, array())->GetNext(); }
+?>
+<?$arOfferProps = implode(';', $arParams['OFFERS_CART_PROPERTIES']);?>
 
+<?$totalCount = CIshop::GetTotalCount($arResult);
+$arAddToBasketData=CIshop::GetAddToBasketArray($arResult, $totalCount);
+?>
 
 
 <div class="shadow-item_info"><img border="0" alt="" src="<?=SITE_TEMPLATE_PATH?>/img/shadow-item_info.png"></div>
+
 <div class="container left shop">
 <div class="inner_left">
 
@@ -76,9 +85,9 @@
 		<?}?>
 	</div>
 	<div class="right_info">
-		
+
 		<div class="info_block">
-		
+
 			<?if( !empty($arResult["PROPERTIES"]["BRAND"]["VALUE"]) ){?>
 				<div class="brand">
 					<?$rsBrand = CIBlockElement::GetList( array(), array("IBLOCK_ID" => $arResult["PROPERTIES"]["BRAND"]["LINK_IBLOCK_ID"], "ID" => $arResult["PROPERTIES"]["BRAND"]["VALUE"] ));
@@ -87,7 +96,7 @@
 					<b><?=GetMessage("BRAND");?>:</b> <a href="<?=$arBrand["DETAIL_PAGE_URL"]?>"><?=$arBrand["NAME"]?></a>
 				</div>
 			<?}?>
-			
+
 			<div class="compare" id="compare">
 				<?$APPLICATION->IncludeComponent(
 					"bitrix:catalog.compare.list",
@@ -106,8 +115,8 @@
 					)
 				);?>
 			</div>
-			
-		
+
+
 			<div class="likes_icons">
 				<!--noindex-->
 					<?if (empty($arResult["OFFERS"])&&$arResult["CAN_BUY"]):?>
@@ -124,17 +133,17 @@
 					<?}?>
 				<!--/noindex-->
 			</div>
-			
+
 			<div style="clear: right;"></div>
 		</div>
 		<div class="information item_ws">
 			<? //print_r($arResult);?>
-		
+
 			<?if ($arResult["CAN_BUY"] || !empty( $arResult["OFFERS"]) || !empty( $arResult["PRICES"])){?>
 				<div class="middle_info">
 					<table cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td>
 
-					
+
 						<?if( !empty( $arResult["OFFERS"] ) ){?>
 
 							<div class="price_block bottom20">
@@ -193,16 +202,16 @@
 									<span><?=GetMessage('ONE_CLICK_BUY')?></span>
 								</a>
 							<?}?>
-							<!--/noindex-->	
+							<!--/noindex-->
 						</nobr>
 
 					</td></tr></table>
 					<div style="clear: right;"></div>
 				</div>
 			<?}?>
-		
-			
-		
+
+
+
 	<?/*<div class="top_info">
 				<?if( is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"])):?>
 					<?if ($arParams["SHOW_QUANTITY"]!="N"){?>
@@ -234,12 +243,12 @@
 						</div>
 					<!--/noindex-->
 					<?endif;?>
-				<?endif;?>	
+				<?endif;?>
 			</div>
 */?>
-			
+
 			<?if( is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"]) ){?>
-			
+
 				<?if(($arParams["SKU_DISPLAY_LOCATION"]=="RIGHT")||(!$arParams["SKU_DISPLAY_LOCATION"])):?>
 					<table class="equipment" cellspacing="0" cellpadding="0">
 						<thead>
@@ -266,7 +275,7 @@
 											<?=$arSKU["PRICE"]?>
 										<?}?>
 									</td>
-									<?if ($arParams["SHOW_QUANTITY"]!="N"){?>									
+									<?if ($arParams["SHOW_QUANTITY"]!="N"){?>
 										<td class="offer_count">
 											<?if($arParams["USE_STORE"] == "Y"):?><a class="show_offers_stores" onclick="return showOffersStores('<?=$arSKU["ID"]?>', '<?=$arParams["MIN_AMOUNT"]?>', '<?=$arParams["USE_MIN_AMOUNT"]?>', '<?=$arParams["USE_STORE_SCHEDULE"]?>', '<?=$arParams["USE_STORE_PHONE"]?>', '<?=$arParams["STORE_PATH"]?>');"><?endif;?>
 												<?=$arSKU["CATALOG_QUANTITY"]?>&nbsp;<?=GetMessage("MEASURE");?>
@@ -279,7 +288,7 @@
 												<a rel="nofollow" element_id="#<?=$arSKU["ID"];?>" href="<?=$arSKU["ADD_URL"]?>" onclick="return addToCart(this, 'detail', '<?=GetMessage("CATALOG_IN_CART")?>', 'cart', '<?=$arParams["BASKET_URL"]?>', '<?=$arResult["ID"]?>', '<?=$arSKU["ID"]?>');"><?=GetMessage("CATALOG_BUY")?></a>
 											</td>
 											<td class="buy_link">
-												<a onclick="return oneClickBuy('<?=$arSKU["ID"];?>', '16');"><?=GetMessage('ONE_CLICK_BUY')?></a>	
+												<a onclick="return oneClickBuy('<?=$arSKU["ID"];?>', '16');"><?=GetMessage('ONE_CLICK_BUY')?></a>
 											</td>
 										<?}elseif( $arNotify[SITE_ID]['use'] == 'Y'){?>
 											<?if( $USER->IsAuthorized() ){?>
@@ -323,7 +332,7 @@
 	<?if( is_array($arResult["OFFERS"]) && !empty($arResult["OFFERS"]) ){?>
 
 		<?if($arParams["SKU_DISPLAY_LOCATION"]=="BOTTOM"):?>
-		
+
 			<table class="equipment" cellspacing="0" cellpadding="0">
 				<thead>
 					<tr>
@@ -349,7 +358,7 @@
 									<?=$arSKU["PRICE"]?>
 								<?}?>
 							</td>
-							<?if ($arParams["SHOW_QUANTITY"]!="N"){?>							
+							<?if ($arParams["SHOW_QUANTITY"]!="N"){?>
 								<td class="offer_count">
 									<?if($arParams["USE_STORE"] == "Y"):?><a class="show_offers_stores" onclick="return showOffersStores('<?=$arSKU["ID"]?>', '<?=$arParams["MIN_AMOUNT"]?>', '<?=$arParams["USE_MIN_AMOUNT"]?>', '<?=$arParams["USE_STORE_SCHEDULE"]?>', '<?=$arParams["USE_STORE_PHONE"]?>', '<?=$arParams["STORE_PATH"]?>');"><?endif;?>
 										<?=$arSKU["CATALOG_QUANTITY"]?>&nbsp;<?=GetMessage("MEASURE");?>
@@ -376,7 +385,7 @@
 									</td>
 									<td class="buy_link">
 										<?if( $arSKU["CAN_BUY"] ){?>
-											<a onclick="return oneClickBuy('<?=$arSKU["ID"];?>');"><?=GetMessage('ONE_CLICK_BUY')?></a>	
+											<a onclick="return oneClickBuy('<?=$arSKU["ID"];?>');"><?=GetMessage('ONE_CLICK_BUY')?></a>
 										<?}?>
 									</td>
 								<?if( $arParams["DISPLAY_COMPARE"] == "Y" ){?>
@@ -405,11 +414,11 @@
 		while( $arStock = $rsStock->GetNext() ){?>
 			<div class="stock_board">
 				<div class="name"><?=GetMessage("CATALOG_STOCK_TITLE")?> <a class="read_more" href="<?=$arStock["DETAIL_PAGE_URL"]?>"><?=GetMessage("CATALOG_STOCK_VIEW")?></a> <i></i> </div>
-				<div class="txt"><?=$arStock["PREVIEW_TEXT"]?></div>				
+				<div class="txt"><?=$arStock["PREVIEW_TEXT"]?></div>
 			</div>
 		<?}?>
 		<?=$arResult["DETAIL_TEXT"]?>
-		
+
 		<?
 			$showProps = false;
 			foreach( $arResult["DISPLAY_PROPERTIES"] as $arProp )
@@ -420,28 +429,28 @@
 		<?if ($showProps):?>
 			<div class="shadow-item_info"><img border="0" src="<?=SITE_TEMPLATE_PATH?>/img/shadow-item_info_revert.png" alt="" /></div>
 			<h4 class="char"><?=GetMessage('CT_NAME_DOP_CHAR')?></h4>
-			<div class="char-wrapp">			
+			<div class="char-wrapp">
 				<?foreach( $arResult["DISPLAY_PROPERTIES"] as $arProp ){?>
-					<?if (($arProp["CODE"]!="HIT")&&($arProp["CODE"]!="RECOMMEND")&&($arProp["CODE"]!="NEW")&&($arProp["CODE"]!="STOCK")):?>				
+					<?if (($arProp["CODE"]!="HIT")&&($arProp["CODE"]!="RECOMMEND")&&($arProp["CODE"]!="NEW")&&($arProp["CODE"]!="STOCK")):?>
 						<?if( !empty( $arProp["VALUE"] ) ){?>
 							<div class="char">
 								<div class="char_name"><?=$arProp["NAME"]?>:</div>
 								<div class="char_value">
 									<?
-										if(count($arProp["DISPLAY_VALUE"])>1) 
-											{ foreach($arProp["DISPLAY_VALUE"] as $key => $value) { if ($arProp["DISPLAY_VALUE"][$key+1]) {echo $value.", ";} else {echo $value;} }} 
-										else 
+										if(count($arProp["DISPLAY_VALUE"])>1)
+											{ foreach($arProp["DISPLAY_VALUE"] as $key => $value) { if ($arProp["DISPLAY_VALUE"][$key+1]) {echo $value.", ";} else {echo $value;} }}
+										else
 											{ echo $arProp["DISPLAY_VALUE"]; }
 									?>
 								</div>
 							</div>
 						<?}?>
 					<?endif;?>
-				<?}?>		
+				<?}?>
 			</div>
-							
+
 		<?endif;?>
-		
+
 		<?if( !empty($arResult["PROPERTIES"]["INSTRUCTIONS"]["VALUE"]) ){?>
 			<div class="shadow-item_info"><img border="0" src="<?=SITE_TEMPLATE_PATH?>/img/shadow-item_info_revert.png" alt="" /></div>
 			<h4 class="char"><?=GetMessage('CT_NAME_INSTRUCTIONS')?></h4><br/>
@@ -487,12 +496,12 @@
 <div class="tabs_section">
 <br/><br/>
 	<ul class="tabs">
-		<? 
+		<?
 			global $first_tab;
 			$show_tabs = false;
 			$first_tab=-1;
-		?>		
-		
+		?>
+
 		<?if( !$arResult["OFFERS"]):?>
 			<?if($arParams["USE_STORE"] == "Y"):?>
 				<li <? echo !$show_tabs?'class="current"':''; ?>>
@@ -517,9 +526,9 @@
 						$show_tabs=true;
 					}
 				?>
-			<?endif;?>	
-		<?endif;?>						
-		
+			<?endif;?>
+		<?endif;?>
+
 		<?if( !empty( $arResult["PROPERTIES"]["EXPANDABLES"]["VALUE"] ) ){ ?>
 			<li <? echo !$show_tabs?'class="current"':''; ?>>
 				<span><i><?=GetMessage('CT_NAME_DOP_OBORUDOVANIE')?> (<?=count($arResult["PROPERTIES"]["EXPANDABLES"]["VALUE"])?>)</i></span>
@@ -542,8 +551,8 @@
 					}
 				?>
 			</li>
-		<?endif;?>	
-		
+		<?endif;?>
+
 		<?if (($arParams["SHOW_ASK_BLOCK"]=="Y")&&(intVal($arParams["ASK_FORM_ID"]))):?>
 			<li <? echo !$show_tabs?'class="current"':''; ?>>
 				<span><i><?=GetMessage('CT_NAME_ASK_BLOCK_TITLE')?></i></span>
@@ -555,11 +564,11 @@
 				?>
 			</li>
 		<?endif;?>
-		
+
 	</ul>
 
 
-	
+
 	<?if( !$arResult["OFFERS"]):?>
 		<!--noindex-->
 			<?/*if(!$arResult["CATALOG_QUANTITY"]){?>
@@ -569,9 +578,9 @@
 					<a rel="nofollow" href="#" class="button add_order" onclick="showAuthForSubscribe(this, <?=$arResult["ID"]?>, '<?=$arResult["SUBSCRIBE_URL"]?>')" class="bt2"><span><?=GetMessage('CATALOG_ORDER_NAME')?></span></a>
 				<?}?><br/><br/>
 			<?}*/?>
-		<!--/noindex-->	
-		<?if($arParams["USE_STORE"] == "Y"){?>	
-			<div class="box" <? echo $first_tab==1?'style="display: block;"':''; ?>>	
+		<!--/noindex-->
+		<?if($arParams["USE_STORE"] == "Y"){?>
+			<div class="box" <? echo $first_tab==1?'style="display: block;"':''; ?>>
 				<?$APPLICATION->IncludeComponent("bitrix:catalog.store.amount", "shop", array(
 						"PER_PAGE" => "10",
 						"USE_STORE_PHONE" => $arParams["USE_STORE_PHONE"],
@@ -583,14 +592,14 @@
 						"MAIN_TITLE"  =>  $arParams["MAIN_TITLE"],
 					),
 					$component
-				);?>	
+				);?>
 			</div>
 		<?}?>
 	<?endif;?>
-	
+
 	<?if( !empty($arResult["PROPERTIES"]["ASSOCIATED"]["VALUE"]) ){?>
 	<div class="box" <? echo $first_tab==2?'style="display: block;"':''; ?>>
-		<div class="associated_items">			
+		<div class="associated_items">
 				<?$GLOBALS['arrFilterAssociated'] = array( "ID" => $arResult["PROPERTIES"]["ASSOCIATED"]["VALUE"] );
 				$APPLICATION->IncludeComponent(
 					"bitrix:catalog.section",
@@ -653,12 +662,12 @@
 						"ADD_CHAIN_ITEM" => "N"
 					),
 				$component
-				);?>		
+				);?>
 		</div>
-	</div>		
+	</div>
 	<?}?>
 
-	
+
 	<?if( !empty($arResult["PROPERTIES"]["EXPANDABLES"]["VALUE"]) ){?>
 		<div class="box" <? echo $first_tab==3?'style="display: block;"':''; ?>>
 			<?$GLOBALS['arrFilterExpandables'] = array( "ID" => $arResult["PROPERTIES"]["EXPANDABLES"]["VALUE"] );
@@ -726,7 +735,7 @@
 		);?>
 		</div>
 	<?}?>
-	
+
 
 
 

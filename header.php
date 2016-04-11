@@ -5,7 +5,13 @@
 	<?global $APPLICATION; $fields = CSite::GetByID(SITE_ID)->Fetch();?>
 	<?IncludeTemplateLangFile(__FILE__);?>
 	<title><?$APPLICATION->ShowTitle()?></title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<?$APPLICATION->ShowMeta("viewport");?>
+	<?$APPLICATION->ShowMeta("HandheldFriendly");?>
+	<?$APPLICATION->ShowMeta("apple-mobile-web-app-capable", "yes");?>
+	<?$APPLICATION->ShowMeta("apple-mobile-web-app-status-bar-style");?>
+	<?$APPLICATION->ShowMeta("SKYPE_TOOLBAR");?>
+
+
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 	<?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/media.css');?>
 	<?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/colors.css');?>
@@ -13,16 +19,16 @@
     <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/css/jquery.fancybox-1.3.4.css');?>
     <?$APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH.'/css/flexslider.css');?>
 	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery-1.7.1.min.js',true)?>
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.elastislide.js',true)?> 
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jqModal.js',true)?> 
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.fancybox-1.3.4.pack.js',true)?> 
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.ui-slider.js',true)?> 
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/slides.min.js',true)?> 
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.flexslider-min.js',true)?> 
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.maskedinput-1.2.2.js',true)?> 
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.easing.1.3.js',true)?> 
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.validate.js',true)?> 
-	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/general.js',true)?> 
+	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.elastislide.js',true)?>
+	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jqModal.js',true)?>
+	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.fancybox-1.3.4.pack.js',true)?>
+	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.ui-slider.js',true)?>
+	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/slides.min.js',true)?>
+	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.flexslider-min.js',true)?>
+	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.maskedinput-1.2.2.js',true)?>
+	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.easing.1.3.js',true)?>
+	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/jquery.validate.js',true)?>
+	<?$APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH.'/js/general.js',true)?>
 	<?$APPLICATION->AddheadString("<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>")?>
 	<?$APPLICATION->ShowHead()?>
 
@@ -47,19 +53,14 @@
 			min: jQuery.validator.format("<?=GetMessage('VALIDATOR_MIN')?>")
 		});
 	</script>
-	<?
-		if (CSite::InDir('/index.php')){ $isFrontPage = true; } 
-		$isAdv = false;
-		if (CSite::InDir('/catalog/sale/') || CSite::InDir('/catalog/hit/') || CSite::InDir('/catalog/recommend/') || CSite::InDir('/catalog/new/') || CSite::InDir('/company/') || CSite::InDir('/info/') || CSite::InDir('/personal/index.php') || CSite::InDir('/personal/profile/') || CSite::InDir('/help/')){
-			$isAdv = true; }
-		if( CSite::InDir('/stores/') ){ $isStores = true; }
-		if( CSite::InDir('/catalog/') ){ $isCatalog = true; }
-		if( CSite::InDir('/contacts/') ){ $isContacts = true; }
-		$issale =  false;
-		if( CSite::InDir('/sale/index.php') ){ $issale=true; }
-		
-		
-	?>
+	<?if(CModule::IncludeModule("aspro.ishop")){CIShop::Start(SITE_ID);}?>
+	<?$isFrontPage = CSite::InDir(SITE_DIR.'index.php');?>
+	<?$isStores = CSite::InDir(SITE_DIR.'stores/');?>
+	<?$isCatalog = CSite::InDir(SITE_DIR.'catalog/');?>
+	<?$isContacts = CSite::InDir(SITE_DIR.'contacts/');?>
+	<?$issale = CSite::InDir(SITE_DIR.'sale/index.php');?>
+	<?$isAdv = CSite::InDir(SITE_DIR.'catalog/sale/') || CSite::InDir(SITE_DIR.'catalog/hit/') || CSite::InDir(SITE_DIR.'catalog/recommend/') || CSite::InDir(SITE_DIR.'catalog/new/') || CSite::InDir(SITE_DIR.'company/') || CSite::InDir(SITE_DIR.'info/') || CSite::InDir(SITE_DIR.'personal/index.php') || CSite::InDir(SITE_DIR.'personal/profile/') || CSite::InDir(SITE_DIR.'help/');?>
+
 </head>
 
 <body>
@@ -88,11 +89,11 @@
 					"TWIT" => COption::GetOptionString("ishop", "shopTwitter", "", SITE_ID)
 					),
 					false
-				);?> 
+				);?>
 			</div>
 			<?$APPLICATION->IncludeComponent(
-	"bitrix:search.title", 
-	"shop", 
+	"bitrix:search.title",
+	"shop",
 	array(
 		"NUM_CATEGORIES" => "1",
 		"TOP_COUNT" => "5",
@@ -138,8 +139,8 @@
 			</div>
 			<div class="clearboth"></div>
 			<?$APPLICATION->IncludeComponent(
-	"bitrix:menu", 
-	"top_menu", 
+	"bitrix:menu",
+	"top_menu",
 	array(
 		"ROOT_MENU_TYPE" => "top",
 		"MENU_CACHE_TYPE" => "A",
@@ -160,10 +161,10 @@
 	false
 );?>
 		</div>
-		
+
 		<div class="content <?=$isFrontPage ? 'front' : ''?>">
 			<?if( $isCatalog ):?><div id="ajax_catalog"><?endif;?>
-			
+
 			<?if( $issale ): ?>
 			<?$APPLICATION->IncludeComponent("bitrix:news.list", "front_slider", array(
 				"IBLOCK_TYPE" => "aspro_ishop_content",
@@ -222,13 +223,13 @@
 				<div class="container left">
 					<div class="inner_left no_right_side">
 			<?endif;?>
-			
+
 			<?if( !$isFrontPage && !$isCatalog && !$issale ):?>
 				<h1 class="title"><?$APPLICATION->ShowTitle(false)?></h1>
 				<?$APPLICATION->IncludeComponent("bitrix:breadcrumb", "content", Array( "START_FROM" => "0", "PATH" => "", "SITE_ID" => "" ), 	false );?>
 				<div class="shadow-item_info"><img border="0" alt="" src="<?=SITE_TEMPLATE_PATH?>/img/shadow-item_info.png"></div>
 			<?endif;?>
-			
+
 			<?if( !$isCatalog ):?>
 				<div class="content_menu_mini">
 					<?$APPLICATION->IncludeComponent("bitrix:menu", "inner_menu", array(
@@ -265,7 +266,7 @@
 							"ALLOW_MULTI_SELECT" => "N" ),
 							false, array( "ACTIVE_COMPONENT" => "Y" )
 						);?>
-						
+
 						<?if( $isAdv ):?>
 							<?$APPLICATION->IncludeComponent("bitrix:news.list", "advt", array(
 								"DISPLAY_DATE" => "N",
@@ -316,7 +317,7 @@
 					</div>
 				<?endif;?>
 			<?endif;?>
-		
-				
-			
+
+
+
 	<?if( $isCatalog && $_REQUEST["mode"] == "ajax" ){ $APPLICATION->RestartBuffer();}?>

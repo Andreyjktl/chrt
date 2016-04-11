@@ -31,38 +31,9 @@
 			$res["PAGE"]["description"] = $section[$arParams["LIST_META_DESCRIPTION"]];
 	  }
 	}
-
-		if($res["PAGE"] ){
-		foreach($res["PAGE"] as $code => $value ) { if ($value) { $APPLICATION->SetPageProperty($code, $value); } else {unset($res["PAGE"][$code]);}}
-		if($res["PAGE"])
-		{
-			global $SectionPageProperties;
-			$SectionPageProperties = $res["PAGE"];
-		}
-	}
-/*	$ipropValues = new \Bitrix\Iblock\InheritedProperty\SectionValues($arParams["IBLOCK_ID"], IntVal($arResult["VARIABLES"]["SECTION_ID"]));
-	$values=$ipropValues->getValues();
-	$ishop_page_title=$values['SECTION_META_TITLE']?$values['SECTION_META_TITLE']:$res["NAME"];
-	$ishop_page_h1=$values['SECTION_PAGE_TITLE']?$values['SECTION_PAGE_TITLE']:$res["NAME"];
-	$APPLICATION->SetTitle($ishop_page_title);*/
-
-
-$ipropValues = new \Bitrix\Iblock\InheritedProperty\SectionValues($arParams["IBLOCK_ID"], IntVal($arResult["VARIABLES"]["SECTION_ID"]));
-$values=$ipropValues->getValues();
-
-$ishop_page_title=$values['SECTION_META_TITLE']?$values['SECTION_META_TITLE']:$arSection["NAME"];
-$ishop_page_h1=$values['SECTION_PAGE_TITLE']?$values['SECTION_PAGE_TITLE']:$arSection["NAME"];
-
-
-$APPLICATION->SetTitle($ishop_page_h1);
-$APPLICATION->SetPageProperty("title", $ishop_page_title);
-
-if ($values['SECTION_META_DESCRIPTION'])  $APPLICATION->SetPageProperty("description", $values['SECTION_META_DESCRIPTION']);
-if ($values['SECTION_META_KEYWORDS'])  $APPLICATION->SetPageProperty("keywords", $values['SECTION_META_KEYWORDS']);
-
 ?>
 
-<h1 class="title"><?=$ishop_page_h1;?></h1>
+<?if($res["NAME"]):?><h1 class="title"><?=$res["NAME"]?></h1><?endif;?>
 
 <?
 	function get_section_path($section_id)
