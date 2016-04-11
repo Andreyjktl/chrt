@@ -1,14 +1,21 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?><?
-	CModule::IncludeModule("iblock");
+<?
+	if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?><?
+		use Bitrix\Main\Loader;
+		use Bitrix\Main\ModuleManager;
 
+	CModule::IncludeModule("iblock");
 	if ($arResult["VARIABLES"]["SECTION_ID"]>0)
 	{
 		$arFilter = Array('IBLOCK_ID'=>$arParams["IBLOCK_ID"], 'GLOBAL_ACTIVE'=>'Y', "ID" => $arResult["VARIABLES"]["SECTION_ID"]);
 		$db_list = CIBlockSection::GetList(array(), $arFilter, true, array("ID", "NAME"));
+
 		while($section = $db_list->GetNext())
 		{
 			$res["NAME"] = $section["NAME"];
 			$res["ID"] = $section["ID"];
+			$res["PAGE"]["title"] = $section[$arParams["LIST_BROWSER_TITLE"]];
+			$res["PAGE"]["keywords"] = $section[$arParams["LIST_META_KEYWORDS"]];
+			$res["PAGE"]["description"] = $section[$arParams["LIST_META_DESCRIPTION"]];
 		}
 	}
 	elseif(strlen(trim($arResult["VARIABLES"]["SECTION_CODE"]))>0)
@@ -19,27 +26,59 @@
 	  {
 		$res["NAME"] = $section["NAME"];
 		$res["ID"] = $section["ID"];
+		$res["PAGE"]["title"] = $section[$arParams["LIST_BROWSER_TITLE"]];
+			$res["PAGE"]["keywords"] = $section[$arParams["LIST_META_KEYWORDS"]];
+			$res["PAGE"]["description"] = $section[$arParams["LIST_META_DESCRIPTION"]];
 	  }
-	} 
+	}
+
+		if($res["PAGE"] ){
+		foreach($res["PAGE"] as $code => $value ) { if ($value) { $APPLICATION->SetPageProperty($code, $value); } else {unset($res["PAGE"][$code]);}}
+		if($res["PAGE"])
+		{
+			global $SectionPageProperties;
+			$SectionPageProperties = $res["PAGE"];
+		}
+	}
+/*	$ipropValues = new \Bitrix\Iblock\InheritedProperty\SectionValues($arParams["IBLOCK_ID"], IntVal($arResult["VARIABLES"]["SECTION_ID"]));
+	$values=$ipropValues->getValues();
+	$ishop_page_title=$values['SECTION_META_TITLE']?$values['SECTION_META_TITLE']:$res["NAME"];
+	$ishop_page_h1=$values['SECTION_PAGE_TITLE']?$values['SECTION_PAGE_TITLE']:$res["NAME"];
+	$APPLICATION->SetTitle($ishop_page_title);*/
+
+
+$ipropValues = new \Bitrix\Iblock\InheritedProperty\SectionValues($arParams["IBLOCK_ID"], IntVal($arResult["VARIABLES"]["SECTION_ID"]));
+$values=$ipropValues->getValues();
+
+$ishop_page_title=$values['SECTION_META_TITLE']?$values['SECTION_META_TITLE']:$arSection["NAME"];
+$ishop_page_h1=$values['SECTION_PAGE_TITLE']?$values['SECTION_PAGE_TITLE']:$arSection["NAME"];
+
+
+$APPLICATION->SetTitle($ishop_page_h1);
+$APPLICATION->SetPageProperty("title", $ishop_page_title);
+
+if ($values['SECTION_META_DESCRIPTION'])  $APPLICATION->SetPageProperty("description", $values['SECTION_META_DESCRIPTION']);
+if ($values['SECTION_META_KEYWORDS'])  $APPLICATION->SetPageProperty("keywords", $values['SECTION_META_KEYWORDS']);
+
 ?>
 
-<?if($res["NAME"]):?><h1 class="title"><?=$res["NAME"]?></h1><?endif;?>
+<h1 class="title"><?=$ishop_page_h1;?></h1>
 
 <?
 	function get_section_path($section_id)
 	{
-		
+
 		$nav = CIBlockSection::GetNavChain(IntVal($arParams["IBLOCK_ID"]), IntVal($section_id));
 		$index = 100;
-		while($ar = $nav->GetNext()){?><a href="<?=$ar["SECTION_PAGE_URL"]?>"><?=$ar["NAME"]?></a><span class="chain">&rarr;</span><?}	
+		while($ar = $nav->GetNext()){?><a href="<?=$ar["SECTION_PAGE_URL"]?>"><?=$ar["NAME"]?></a><span class="chain">&rarr;</span><?}
 	}
 ?>
 
 <div class="breadcrumb">
 	<?$APPLICATION->IncludeComponent("bitrix:breadcrumb", "shop", Array(
-		"START_FROM" => "0",	
-		"PATH" => "",	
-		"SITE_ID" => "",	
+		"START_FROM" => "0",
+		"PATH" => "",
+		"SITE_ID" => "",
 		),
 		false
 	);?>
@@ -127,7 +166,7 @@ if( $count_sections > 0 ){?>
 			"bitrix:sale.viewed.product",
 			"shop",
 			Array(
-				"VIEWED_COUNT" => "2", 
+				"VIEWED_COUNT" => "2",
 				"VIEWED_NAME" => "Y",
 				"VIEWED_IMAGE" => "Y",
 				"VIEWED_PRICE" => "N",
@@ -233,9 +272,9 @@ if( $count_sections > 0 ){?>
 					<?
 						if (array_key_exists("display", $_REQUEST) || (array_key_exists("display", $_SESSION)) || $arParams["DEFAULT_LIST_TEMPLATE"])
 						{
-							if ($_REQUEST["display"]&&((trim($_REQUEST["display"])=="list")||(trim($_REQUEST["display"])=="table")||(trim($_REQUEST["display"])=="block"))) 
+							if ($_REQUEST["display"]&&((trim($_REQUEST["display"])=="list")||(trim($_REQUEST["display"])=="table")||(trim($_REQUEST["display"])=="block")))
 							{$display=trim($_REQUEST["display"]);  $_SESSION["display"]=trim($_REQUEST["display"]);}
-							elseif ($_SESSION["display"]&&(($_SESSION["display"]=="list")||($_SESSION["display"]=="table")||($_SESSION["display"]=="block"))) 
+							elseif ($_SESSION["display"]&&(($_SESSION["display"]=="list")||($_SESSION["display"]=="table")||($_SESSION["display"]=="block")))
 							{$display=$_SESSION["display"];}
 							else {$display=$arParams["DEFAULT_LIST_TEMPLATE"];}
 						} else { $display = "list"; }
@@ -246,7 +285,7 @@ if( $count_sections > 0 ){?>
 							$priceSort = "CATALOG_PRICE_".$basePrice["ID"];
 							$arAvailableSort = array(
 								"POPULARITY" => array("SHOW_COUNTER", "desc"),
-								"NAME" => array("NAME", "asc"), 
+								"NAME" => array("NAME", "asc"),
 								"PRICE" => array($priceSort, "asc")
 							);
 						$sort="POPULARITY";
@@ -271,14 +310,14 @@ if( $count_sections > 0 ){?>
 							</a>
 						<?}?>
 					</div>
-					
+
 					<div class="sort_display">
 						<a rel="nofollow" href="<?=$APPLICATION->GetCurPageParam('display=block', 	array('display', 'mode'))?>" class="button_middle block <?=$display == 'block' ? 'current' : '';?>"><i></i><span><?=GetMessage("SECT_DISPLAY_BLOCK")?></span></a>
 						<a rel="nofollow" href="<?=$APPLICATION->GetCurPageParam('display=list', 	array('display', 'mode'))?>" class="button_middle list <?=$display == 'list' ? 'current' : '';?>"><i></i><span><?=GetMessage("SECT_DISPLAY_LIST")?></span></a>
 						<a rel="nofollow" href="<?=$APPLICATION->GetCurPageParam('display=table', 	array('display', 'mode'))?>" class="button_middle table <?=$display == 'table' ? 'current' : '';?>"><i></i><span><?=GetMessage("SECT_DISPLAY_TABLE")?></span></a>
 					</div>
-					
-					
+
+
 					<div class="compare" id="compare">
 						<?$APPLICATION->IncludeComponent(
 							"bitrix:catalog.compare.list",
@@ -297,12 +336,12 @@ if( $count_sections > 0 ){?>
 							)
 						);?>
 					</div>
-					
-					
+
+
 				<!--/noindex-->
 			</div>
-			
-	
+
+
 
 			<?
 				$show=$arParams["PAGE_ELEMENT_COUNT"];
@@ -311,8 +350,8 @@ if( $count_sections > 0 ){?>
 					if ( intVal($_REQUEST["show"]) && in_array(intVal($_REQUEST["show"]), array(20, 40, 60, 80, 100)) ) {$show=intVal($_REQUEST["show"]); $_SESSION["show"] = $show;}
 					elseif ($_SESSION["show"]) {$show=intVal($_SESSION["show"]);}
 				}
-				if ($sort=="PRICE") {$sort = $arAvailableSort["PRICE"][0];} 
-			?>	
+				if ($sort=="PRICE") {$sort = $arAvailableSort["PRICE"][0];}
+			?>
 			<?$APPLICATION->IncludeComponent(
 				"bitrix:catalog.section",
 				$template,
@@ -382,11 +421,11 @@ if( $count_sections > 0 ){?>
 			);?>
 		</div>
 	</div>
-	
+
 <?}?>
 <div style="clear: both"></div>
 
-<?	
+<?
 	$rsBasket = CSaleBasket::GetList( array( "NAME" => "ASC", "ID" => "ASC" ), array( "FUSER_ID" => CSaleBasket::GetBasketUserID(), 'LID' => SITE_ID , 'ORDER_ID' => 'NULL'), false, false, array("ID", "PRODUCT_ID", "DELAY") );
 	while( $arBasket = $rsBasket->GetNext() )
 	{
