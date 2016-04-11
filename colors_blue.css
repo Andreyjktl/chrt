@@ -1,0 +1,576 @@
+/*colors*/
+h1, h2, h3, h4, .staff_wrapp .section_title:hover  a, .item_jobs_wrapp .name:hover a, .news_all .name , .article_detail .name, .faq_name
+{
+	color: #212121;
+}
+a:hover, .catalog_section_list .item .item_name a, .brand b, .catalog_section_list .section_item .name a, .table_item:hover  a.desc_name, .list_item:hover .desc_name a, .view-list .view-item:hover a, [name='basket_form'] tr:hover .cart-item-name a, .item_stock:hover  .name, .news .item:hover .item_link, .add_item_frame tr:hover .product_description a, .group_item:hover .name a, .display_rows tr:hover .desc_name a, .compare_item_ws:hover  a.desc_name, .card_table td.summ_cell, .card_table td.summary, .staff_item .name, .item_article:hover a.name
+{ 
+	color:#221f26; 
+}
+.catalog_section_list .item li a, .scroller_block input[type="text"], .scroller_block input[type="password"], .staff_item .post, .card_table tr th, .card_table td.price_cell, .drop_number
+{ 
+	color:#635f68; 
+}
+body, p, .search input[type="text"], ul.top_menu a, .stock_board, ul.menu li .child ul li.see_more a, ul.menu li .child ul li a, .popup label, .popup .promt, .tooltip, .item_info table tbody td, .breadcrumb a, .breadcrumb span, .staff_item .phone span, .staff_item .email span, .set_wrapp .bx_item_set_hor  .result .bx_item_set_economy_price, .set_wrapp .bx_item_set_hor  .result .bx_item_set_economy_price *, .set_wrapp .bx_kit_result .bx_item_set_economy_price, .set_wrapp .bx_kit_result .bx_item_set_economy_price *, .bx_modal_body .item_block_title, .bx_modal_body .bx_kit_two_section .title
+{ 
+	color: #636363; 
+}
+.news_block .date, .article_detail .date, .news_all .date, .news .date_news
+{ 
+	color:#67636d; 
+}
+.footer_inner .aspro a, .footer_inner ul a, .footer_inner li.menu_title a:hover, #vertical-multilevel-menu li a.root-item, #vertical-multilevel-menu a.root-item-selected
+{ 
+	color: #636363; 
+}
+.date_big
+{
+	color:#dac58d; 
+}
+span.starrequired, font.starrequired, form.ishop label.error, font.errortext, .one_click_buy_error, #one_click_buy_form .error
+{
+	color: #e00 !important;  
+}
+
+/*borders*/
+.accordion_list .item_name
+{ 
+	border-bottom: 1px dashed #b3b3b3; 
+}
+.staff_wrapp .section_items .contacts 
+{
+	border-top: 1px dotted #c3c3c3;
+}
+.list_item, .differences td
+{
+	border-bottom: 1px solid #d9d9d9;
+}
+blockquote, div.search-page form 
+{ 
+	border-left: 2px solid;
+	border-right: 2px solid;  
+}
+.table_item .tooltip_item:before, .table_item:nth-child(4n+4) .tooltip_item:before, .table_item.last-in-line .tooltip_item:before, .table_item .tooltip_item:before, .table_item:nth-child(4n+4) .tooltip_item:before, .table_item.last-in-line .tooltip_item:before
+{
+	border-right-color: #34373B;
+}
+.table_item:nth-child(4n+4) .tooltip_item:before, .table_item.last-in-line .tooltip_item:before
+{
+	border-left-color: #34373B; 
+}
+.long_separator
+{ 
+	border-bottom: 1px dashed #D9D9D9; 
+}
+.scroller_block input[type="text"], .scroller_block input[type="password"]
+{
+	border:1px solid #d9d3cb; 
+	border-top-color:#c1b7ae;  
+}
+.item_faq .text:before
+{
+	border-bottom-color: #F1F1F1; 
+}
+
+
+
+/* unsorted colors*/
+.item_info .add_review
+{
+	color: #000;
+}
+.inner_menu li.current a
+{ 
+	color:#000;
+}
+.separate_filter .filter-name
+{
+	color: #000; 
+}
+.item_info .available_block, .item_info .noavailable_block, .display_list .available_block, .display_list .noavailable_block
+{
+	color: #000; 
+}
+.content.front h3 a
+{ 
+	color: #000; 
+}
+form.ishop .title
+{
+	color: #000; 
+}
+.basket a.popup_basket
+{ 
+	color: #000;
+}
+.popup_basket_list .block_name
+{
+	color: #000;
+}
+.popup .title, body .popup-window-titlebar
+{ 
+	color: #000;
+}
+.list_item .description .show_props a
+{ 
+	color: #000;
+}
+.info_block .article
+{ 
+	color: #000; 
+}
+.right_info .name
+{ 
+	color: #000; 
+}
+.left_menu li a
+{
+	color:#000; 
+}
+.staff_item .phone, .staff_item .email
+{
+	color: #000;
+}
+.pagination a.cur
+{  
+	color:#fff;
+}
+.button
+{ 
+	color:#fff;
+}
+.left_menu li.current a, .left_menu li.current:hover a
+{ 
+	color:#fff; 
+	text-shadow: 0 1px 1px rgba(0,0,0,.15);
+	-moz-text-shadow: 0 1px 1px rgba(0,0,0,.15);
+	-webkit-text-shadow: 0 1px 1px rgba(0,0,0,.15);
+}
+.sort_display a.current
+{ 
+	color: #fff;
+}
+.mini_gallery li.title 
+{
+	color: #000;
+}
+.stock_detail .name
+{
+	color: #000; 
+}
+.brand_view_detail .name
+{
+	color: #000;
+}
+.set_wrapp .bx_kit_result .total_title, .set_wrapp .bx_item_set_hor  .result .total_title
+{
+	color: #000;
+}
+.tabs li span
+{ 
+	color:#000; 
+}
+.tabs li.current span, .tabs li.current:hover span
+{ 
+	color: #fff; 
+}
+.date_big
+{ 
+	color:  #409777 !important; 
+} 
+.phone_feedback a
+{ 
+	color: #000;
+}
+.filter_block .filter-name , .filter_block .block_name
+{
+	color: #211f26;
+}
+ul.menu li .child ul  .menu_title a, .child a
+{ 
+	color: #000;
+}
+
+/*unsorted others*/
+
+.item_info .found_cheaper
+{ 
+	color: #000;
+}
+ol li:before, .list-item-before
+{ 
+	color: #fff;
+}
+.inner_menu li.current
+{ 
+	background-color:#dfdfdf; 
+}
+.item_jobs .salary-block  span 
+{
+	color: #000;
+	box-shadow: 0px 0 16px #ddd inset;
+	-moz-box-shadow: 0px 0 16px #ddd inset;
+	-webkit-box-shadow: 0px 0 16px #ddd inset;
+	border-right: 3px solid;
+	background: #f2f2f2;
+}
+.differences tr.hovered:hover
+{ 
+	background-color: #e4e4e4; 
+}
+body .popup-window 
+{
+	background: #fff;
+	color: #bdbdbd;
+}
+body .popup-window-titlebar .popup-window-top-row .popup-window-center-column
+{
+	border-bottom: 1px solid #dadada;
+	background-color: #fff;
+}
+.table-standart tr th, .table-standart thead tr td
+{
+	color: #000; 
+	background: #ffffff; 
+	border-top: 1px solid #F4F4F4;
+	background: -moz-linear-gradient(top,  #ffffff 0%, #e4e4e4 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e4e4e4)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#e4e4e4 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#e4e4e4 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#e4e4e4 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ffffff 0%,#e4e4e4 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e4e4e4',GradientType=0 ); /* IE6-8 */
+	-webkit-box-shadow: 0px 1px 4px rgba(204, 204, 204, 1);
+	-moz-box-shadow:    0px 1px 4px rgba(204, 204, 204, 1);
+	box-shadow:         0px 1px 4px rgba(204, 204, 204, 1); 
+}
+.table-standart tr td
+{
+	border-bottom:1px solid #d4d4d4;
+}
+.shop_description
+{ 
+	color: #adadad; 
+}
+.popup .popup_title
+{ 
+	color: #fff;
+}
+.popup
+{ 
+	color:#bdbdbd; 
+}
+.table_item .tooltip_item
+{
+	color:#fff; 
+	background: -moz-linear-gradient(270deg, rgb(40, 43, 46) 0%, rgb(52, 55, 59) 100%); 
+	background: -webkit-linear-gradient(270deg, rgb(40, 43, 46) 0%, rgb(52, 55, 59) 100%); 
+	background: -o-linear-gradient(270deg, rgb(40, 43, 46) 0%, rgb(52, 55, 59) 100%);
+	background: -ms-linear-gradient(270deg, rgb(40, 43, 46) 0%, rgb(52, 55, 59) 100%);
+	background: linear-gradient(0deg, rgb(40, 43, 46) 0%, rgb(52, 55, 59) 100%); 
+}
+.counter_block input.text
+{  
+	color:#2a2b32;
+}
+.view-list .view-header 
+{
+	color: #000;
+	background-color: #F1F1F1;
+}
+.item_info .description
+{ 
+	color: #7e7e7e;
+}
+.item_info table.equipment thead tr td
+{
+	color: #000; 
+	background: #ffffff; 
+	background: -moz-linear-gradient(top,  #ffffff 0%, #e4e4e4 100%); 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e4e4e4)); 
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#e4e4e4 100%); 
+	background: -o-linear-gradient(top,  #ffffff 0%,#e4e4e4 100%);
+	background: -ms-linear-gradient(top,  #ffffff 0%,#e4e4e4 100%); 
+	background: linear-gradient(to bottom,  #ffffff 0%,#e4e4e4 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e4e4e4',GradientType=0 ); 
+	-webkit-box-shadow: 0px 1px 4px rgba(204, 204, 204, 1);
+	-moz-box-shadow:    0px 1px 4px rgba(204, 204, 204, 1);
+	box-shadow:         0px 1px 4px rgba(204, 204, 204, 1);
+}
+.number_list
+{ 
+	background:#fff; 
+	box-shadow: 0 0 4px #B0AFAF;
+	-webkit-box-shadow: 0 0 4px #B0AFAF; 
+	-moz-box-shadow: 0 0 4px #B0AFAF; 
+	border:1px solid #ccc; 
+}
+.footer_inner .copy
+{  
+	color: #7b7b7b; 
+}
+.compare a.link
+{ 
+	font-size: 11px; 
+	color: #000;
+}
+.line_link
+{ 
+	border-top:1px solid #dedede; 
+	color:#3198b7;
+}
+.stock_board .txt
+{ 
+	color: #000; 
+}
+.drop_number a.number span
+{ 
+	color: #000; 
+}
+.news_block .title a
+{ 
+	color: #000;
+}
+.line_link span
+{
+	background-color:#FFF;
+}
+ul.menu .child a
+{ 
+	color: #000; 
+}
+.in_basket table
+{
+	border-top: 1px solid #dadada ; 
+	border-bottom: 1px solid #dadada; 
+}
+.tabs_section .table-standart
+{
+	border-top: 1px solid #d4d4d4;
+}
+.tabs_section .table-standart  tr:hover td
+{
+	background: #e5e5e5;
+} 
+.button.sm.red, .button.sm.red span
+{
+	background: #93769e;
+	background: -moz-linear-gradient(top, #93769e, #4d2a59);
+	background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #4d2a59),color-stop(1, #93769e));
+	filter:progid: DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#93769e', endColorstr='#4d2a59'); /* IE 6-7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#93769e', endColorstr='#4d2a59')"; /* IE8 */
+}	
+ul.top_menu a.current 
+{ 
+	color: #e0e0e0; 
+	background: #404246; 
+	-moz-box-shadow: inset 1px 1px 3px 0px #000000; 
+	-webkit-box-shadow: inset 1px 1px 3px 0px #000000; 
+	box-shadow: inset 1px 1px 3px 0px #000000; 
+} 
+.search input[type="text"]:focus
+{
+	border-color: #BDBDBD;
+}
+#vertical-multilevel-menu li a.root-item, #vertical-multilevel-menu a.root-item-selected
+ { 
+	box-shadow: 0 1px 2px #ebebeb;
+	-moz-box-shadow: 0 1px 2px #ebebeb;
+	-webkit-box-shadow: 0 1px 2px #ebebeb;
+	border-bottom: 1px solid #c5c5c5;
+}
+#vertical-multilevel-menu li a.root-item
+{
+	background-color: #EBEBEB; 
+}
+#vertical-multilevel-menu li a.item-selected
+{  
+	background-color: #D6D6D6; 
+}
+#vertical-multilevel-menu li a:hover
+{ 
+	color: #379b89;
+} 
+#vertical-multilevel-menu ul.root-item 
+{
+	background: #ebebeb !important;
+}
+#vertical-multilevel-menu ul.root-item a:hover
+{
+	color: #101010;
+}
+#vertical-multilevel-menu li ul.root-item
+{
+	box-shadow: 0 5px 7px -5px #9A9A9A;
+	-moz-box-shadow: 0 5px 7px -5px #9A9A9A;
+	-webkit-box-shadow: 0 5px 7px -5px #9A9A9A;
+}
+/*unsorted*/
+ul.menu li .child 
+{ 
+	background: #eaeaea; 
+}
+.for_button.reset_layout 
+{
+	border-top: 1px solid #fff;
+}
+.filter_block
+{ 
+	background-color:#f1f1f1; 
+	box-shadow: 0 0 5px #ddd; 
+	-moz-box-shadow: 0 0 5px #ddd; 
+	-webkit-box-shadow: 0 0 5px #ddd; 
+	border: 1px solid #fff;
+}
+.filter_block .filter-name
+{
+	border-top: 1px solid #fff;
+}
+.separate_filter 
+{
+	border-bottom: 1px solid #e8e8e8;
+}
+.filter_block input[type="checkbox"] + label
+{ 
+	color: #635f67; 
+}
+.filter_block input[type="checkbox"] + label:hover, form.ishop input[type="checkbox"] + label:hover
+{
+	color: #000;
+}
+.stock_board .name
+{ 
+	color: #000;
+	background: #ebebeb; 
+}
+.item_article
+{ 
+	border-bottom: 1px solid #d9d9d9; 
+}
+.item_faq .text
+{
+	background: #F1F1F1; 
+}
+.tooltip
+{
+	background: #fff; 
+	box-shadow: 0 0 5px #8C8B8B; 
+	-webkit-box-shadow: 0 0 5px #8C8B8B; 
+	-moz-box-shadow: 0 0 5px #8C8B8B; 
+	border: 1px solid #ccc;
+}
+.view-list 
+{
+	box-shadow: 0 0 5px #ddd; 
+	-moz-box-shadow: 0 0 5px #ddd; 
+	-webkit-box-shadow: 0 0 5px #ddd; 
+	border: 1px solid #fff; 
+}
+.view-list .view-item   
+{
+	border-bottom: 1px solid #e8e8e8;
+}
+.sort_header
+{ 
+	border: 1px solid #fcfcfc;
+	box-shadow: 0 10px 20px -10px #B0AFAF;
+	-webkit-box-shadow: 0 10px 20px -10px #B0AFAF;
+	-moz-box-shadow: 0 10px 20px -10px #B0AFAF;
+	background: #f1f1f1;
+}
+.stock_board
+{
+	border: 4px solid;
+	box-shadow: 0 0 6px 1px #CCCCCC inset;
+	-moz-box-shadow: 0 0 6px 1px #CCCCCC inset;
+	-webkit-box-shadow: 0 0 6px 1px #CCCCCC inset;
+}
+.filter_block .block-scroll
+{ 
+	border: 1px solid #E0DBD5; 
+	box-shadow: inset 0 1px 2px #DED9D3; 
+	-webkit-box-shadow: inset 0 1px 2px #DED9D3; 
+	-moz-box-shadow: inset 0 1px 2px #DED9D3; 
+}
+
+.scroller_block .ui-widget-content 
+{ 
+	border: 1px solid #cbcbcb; 
+}
+.brand_view_detail a.fancy 
+{ 
+	border: 1px solid #d9d9d9; 
+	-moz-box-shadow:inset 0 0 9px 2px #CCCCCC;
+	-webkit-box-shadow:inset 0 0 9px 2px #CCCCCC;
+	box-shadow:0 0 9px 2px #CCCCCC inset;   
+}
+.set_wrapp .bx_item_set_hor .bx_item_set_hor_item.main .table_item_inner, .bx_modal_body .main .table_item_inner
+{
+	border: 4px solid #dadada;
+}
+.set_wrapp .bx_item_set_hor .bx_item_set_hor_item .table_item_inner, .bx_modal_body .table_item_inner
+{
+	border: 1px dotted #c3c3c3;
+}
+.popup input[type="text"], .popup input[type="password"], .popup input[type="file"], .popup input[type="email"], .input_text_style, 
+form.ishop input[type="text"], form.ishop input[type="email"], form.ishop input[type="password"], form.ishop textarea
+{
+	box-shadow: inset 0 0 3px #dcdcdc; 
+	-webkit-box-shadow: inset 0 0 3px #dcdcdc; 
+	-moz-box-shadow: inset 0 0 3px #dcdcdc;  
+	border: 1px solid #dcdcdc; 
+	-webkit-border-radius: 3px; 
+	-moz-border-radius: 3px; 
+	border-radius: 3px;  
+}
+form.faq input[type="text"], form.faq input[type="email"], form.faq textarea
+{ 
+	background: #fff; 
+}
+.search input[type="text"]
+{
+	border: 1px solid #dcdcdc; 
+	box-shadow: inset 0 0 3px #dcdcdc; 
+	-webkit-box-shadow: inset 0 0 3px #dcdcdc; 
+	-moz-box-shadow: inset 0 0 3px #dcdcdc;
+}
+.list_item .description table
+{ 
+	border-top: 1px solid #e4e4e4;
+}
+.list_item .description td
+{ 
+	border-bottom:1px solid #e4e4e4; 
+}
+.desc_col_wr  strong
+{
+	color: #000;
+}
+.news_all .date
+{ 
+	border: 1px solid #d9d9d9;
+	background: #fafafa;
+}
+.rss_icon
+{
+	background: rgba(229, 88, 0, 0.77);
+	color: #fff;
+	border-bottom: 1px solid rgb(196, 75, 0);
+}
+.rss_icon span
+{
+	border-bottom: 1px solid rgba(255,255,255,.5);
+}
+.rss_icon:hover
+{
+	background: rgba(229, 88, 0, 1);
+}
+.rss_icon:hover span
+{
+	border-bottom: 1px solid rgba(255,255,255,.7);
+	color: #fff;
+}
+.error_404 .t
+{
+	color: #000;
+}
